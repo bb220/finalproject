@@ -31,6 +31,19 @@ var Header = React.createClass({
   }
 });
 
+var Footer = React.createClass({
+  render: function() {
+    return (
+      <nav className="navbar navbar-inverse navbar-fixed-bottom">
+        <div className="container-fluid">
+          <p className="navbar-text navbar-left">statistic</p>
+          <p className="navbar-text">Share</p>
+        </div>
+      </nav>
+      );
+  }
+});
+
 var PhotoFeed = React.createClass({
 
   loadPhotosFromServer: function() {
@@ -62,8 +75,8 @@ var PhotoFeed = React.createClass({
     for(var i = 0; i < responseLength; i++) {
       if (i == responseLength - 3) {
         rows.push(
-          <div className="photoContainer">
-            <PhotoContainer count={i} imagesrc={this.state.response[i].images.standard_resolution.url} filter={this.state.response[i].filter} />
+          <div className="photo">
+            <Photo count={i} imagesrc={this.state.response[i].images.standard_resolution.url} filter={this.state.response[i].filter} />
             <Waypoint onEnter={this.loadMore} />
           </div>
           );
@@ -82,18 +95,6 @@ var PhotoFeed = React.createClass({
       </div>
     );
   }
-});
-
-
-
-var PhotoContainer = React.createClass ({
-    render: function() {
-        return(
-            <div className="photoContainer">
-                <Photo imagesrc={this.props.imagesrc} filter={this.props.filter}/>
-            </div>
-            );
-    }
 });
 
 var Photo = React.createClass ({
@@ -118,6 +119,7 @@ var OverallStream = React.createClass({
         <Header />
         <UserOptions />
         <PhotoFeed />
+        <Footer />
       </div>
       );
   }
