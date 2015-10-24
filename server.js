@@ -42,6 +42,7 @@ exports.handleauth  = function(req, res) {
 var requestCount = 1;
 
 exports.loadPhotoFeed = function(req, res) {
+	//add options to retrieve next pages
 	ig.user_self_feed(function(err, medias, pagination, remaining, limit) {
 		if(err) {
 			console.log(err.body);
@@ -55,6 +56,7 @@ exports.loadPhotoFeed = function(req, res) {
 				else {
 					pagination.next(function(err, medias, pagination, remaining, limit){
 						res.send(medias);
+						requestCount = 1;
 					});
 				}
 				requestCount += 1;
