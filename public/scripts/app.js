@@ -70,8 +70,8 @@ var PhotoFeed = React.createClass({
       }
       else {
         rows.push(
-          <div className="photoContainer">
-          <PhotoContainer count={i} imagesrc={this.state.response[i].images.standard_resolution.url} filter={this.state.response[i].filter} />
+          <div className="photo">
+          <Photo count={i} imagesrc={this.state.response[i].images.standard_resolution.url} filter={this.state.response[i].filter} />
           </div>
           );
       } 
@@ -90,8 +90,7 @@ var PhotoContainer = React.createClass ({
     render: function() {
         return(
             <div className="photoContainer">
-                <FilterLabel filter={this.props.filter} />
-                <Photo imagesrc={this.props.imagesrc} />
+                <Photo imagesrc={this.props.imagesrc} filter={this.props.filter}/>
             </div>
             );
     }
@@ -102,29 +101,20 @@ var Photo = React.createClass ({
         return(
             <div className="photo">
                 <img src={this.props.imagesrc} className="center-block"/> 
+                <h2 className="text-center"><span>{this.props.filter}</span></h2>
             </div>
             );
     }
 });
 
-var FilterLabel = React.createClass({
-    render: function() {
-        return(
-            <div className="filterLabel">
-                <h2 className="text-center">{this.props.filter}</h2>
-            </div>
-            );
-    }
-}); 
-
 //Global variables
 var rows =[];
 var requestUrl = "http://localhost:3000/loadPhotoFeed";
 
-var OverallView = React.createClass({
+var OverallStream = React.createClass({
   render: function() {
     return (
-      <div className="overallView">
+      <div className="overallStream">
         <Header />
         <UserOptions />
         <PhotoFeed />
@@ -133,7 +123,17 @@ var OverallView = React.createClass({
   }
 });
 
-React.render(
-  <OverallView  />,
-  document.getElementById('content')
-);
+//Backbone views
+var overallStream = Backbone.View.extend({
+  el: '#content',
+  template: '<div class="photo-stream"></div>',
+  render: function() {
+    this.$el.html(this.template);
+    React.render(<OverallStream />, this.$('.photo-stream').get(0));
+    return this;
+  }
+});
+
+new overallStream().render();
+
+
