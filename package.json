@@ -1,0 +1,24 @@
+{
+  "name": "finalproject",
+  "version": "1.0.0",
+  "description": "course final project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bb220/finalproject.git"
+  },
+  "author": "Brandon Bellero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bb220/finalproject/issues"
+  },
+  "homepage": "https://github.com/bb220/finalproject",
+  "dependencies": {
+    "express": "^4.13.3",
+    "instagram-node": "^0.5.8"
+  }
+}
