@@ -40,26 +40,18 @@ exports.handleauth  = function(req, res) {
 };
 
 var requestCount = 1;
+var options = {count:15, min_id:null, max_id:null};
 
 exports.loadPhotoFeed = function(req, res) {
 	//add options to retrieve next pages
-	ig.user_self_feed(function(err, medias, pagination, remaining, limit) {
+	ig.user_self_feed(options, function(err, medias, pagination, remaining, limit) {
 		if(err) {
 			console.log(err.body);
 		} else {
-			console.log('user_self_feed successfully retrieved');
-			console.log("retrieved page " + requestCount);
-			//use of built-in pagination method
-				if (requestCount == 1) {
-					res.send(medias);
-				}
-				else {
-					pagination.next(function(err, medias, pagination, remaining, limit){
-						res.send(medias);
-						requestCount = 1;
-					});
-				}
-				requestCount += 1;
+			console.log("Successfully retrieved page " + requestCount);
+			options.max_id = pagination.next_max_id;
+			res.send(medias);
+			requestCount += 1;
 		}
 	});
 };
@@ -71,6 +63,7 @@ exports.logOut = function(req, res) {
 			});
 	res.redirect('https://instagram.com/accounts/logout/');
 	requestCount = 1;
+	options.max_id = null;
 }
 
 
