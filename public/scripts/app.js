@@ -1,22 +1,33 @@
-var UserOptions = React.createClass({
+var LogIn = React.createClass({
   render: function() {
     return (
-      <div className="userOptions">
+      <div className="logIn">
         <div className="row logIn">
           <div className="col-xs-4">
           </div>
           <div className="col-xs-2">
             <a href="http://localhost:3000/authorize_user" className="btn btn-default center-block">Log In</a>
           </div>
-          <div className="col-xs-2 logOut">
-            <a href="http://localhost:3000/logOut" className="btn btn-default center-block">Log Out</a>
-          </div>
-          <div className="col-xs-4">
-          </div>
-          
         </div>
       </div>
       );
+  }
+});
+
+var LogOut = React.createClass({
+  render: function() {
+    return (
+    <div className="logOut">
+      <div className="col-xs-4">
+      </div>
+      <div className="col-xs-2">
+        <a href="http://localhost:3000/authorize_user" className="btn btn-default center-block">Log In</a>
+      </div>
+      <div className="col-xs-2 logOut">
+            <a href="http://localhost:3000/logOut" className="btn btn-default center-block">Log Out</a>
+          </div>
+    </div>
+    );
   }
 });
 
@@ -117,7 +128,7 @@ var OverallStream = React.createClass({
     return (
       <div className="overallStream">
         <Header />
-        <UserOptions />
+        <LogOut />
         <PhotoFeed />
         <Footer />
       </div>
@@ -136,6 +147,16 @@ var overallStream = Backbone.View.extend({
   }
 });
 
+/*var logIn = Backbone.View.extend({
+  el: '#content',
+  template: '<div class="login"></div>',
+  render: function() {
+    this.$el.html(this.template);
+    React.render(<LogIn />, this.$('.login').get(0));
+  }
+}); */
+
+//new logIn().render();
 new overallStream().render();
 
 
