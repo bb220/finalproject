@@ -33,7 +33,7 @@ exports.handleauth  = function(req, res) {
 				client_secret: '24a50386213c4d0bba6187a9669707ca',
 				access_token: result.access_token
 			});
-			res.redirect('http://localhost:3000/');
+			res.redirect('http://localhost:3000/#/stream');
 
 		}
 	});
@@ -65,7 +65,6 @@ exports.logOut = function(req, res) {
 	requestCount = 1;
 	options.max_id = null;
 }
-
 
 //send users to authorize
 app.get('/authorize_user', exports.authorize_user);

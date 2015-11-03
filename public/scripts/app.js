@@ -156,18 +156,12 @@ var logIn = Backbone.View.extend({
   }
 });
 
+new logIn().render();
 
-
-
+//Backbone router
 var Router = Backbone.Router.extend({
   routes: {
-    "login": 'logInScreen',
     "stream": 'streamScreen'
-  },
-
-  logInScreen: function() {
-    console.log('loginCreen!');
-    new logIn().render();
   },
 
   streamScreen: function() {
