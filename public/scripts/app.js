@@ -147,16 +147,35 @@ var overallStream = Backbone.View.extend({
   }
 });
 
-/*var logIn = Backbone.View.extend({
+var logIn = Backbone.View.extend({
   el: '#content',
   template: '<div class="login"></div>',
   render: function() {
     this.$el.html(this.template);
     React.render(<LogIn />, this.$('.login').get(0));
   }
-}); */
-
-//new logIn().render();
-new overallStream().render();
+});
 
 
+
+
+var Router = Backbone.Router.extend({
+  routes: {
+    "login": 'logInScreen',
+    "stream": 'streamScreen'
+  },
+
+  logInScreen: function() {
+    console.log('loginCreen!');
+    new logIn().render();
+  },
+
+  streamScreen: function() {
+    console.log('streamScreen!');
+    new overallStream().render();
+  }
+
+});
+
+var app_router = new Router;
+Backbone.history.start();
