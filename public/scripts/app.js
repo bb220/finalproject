@@ -20,9 +20,7 @@ var LogOut = React.createClass({
     <div className="logOut">
       <div className="col-xs-4">
       </div>
-      <div className="col-xs-2">
-        <a href="http://localhost:3000/authorize_user" className="btn btn-default center-block">Log In</a>
-      </div>
+      <div className="col-xs-2"></div>
       <div className="col-xs-2 logOut">
             <a href="http://localhost:3000/logOut" className="btn btn-default center-block">Log Out</a>
           </div>
