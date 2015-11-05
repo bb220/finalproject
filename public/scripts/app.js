@@ -31,12 +31,12 @@ var LogOut = React.createClass({
     return (
     <div className="logOut">
       <div className="row">
-        <div className="col-xs-4">
+        <div className="col-xs-3 col-md-5">
         </div>
-        <div className="col-xs-2"></div>
-        <div className="col-xs-2 logOut">
+        <div className="col-xs-6 col-md-2 logOut">
           <a href="http://localhost:3000/logOut" className="btn btn-default center-block">Log Out</a>
         </div>
+        <div className="col-xs-3 col-md-5"></div>
       </div>
     </div>
     );
