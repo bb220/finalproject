@@ -3,22 +3,22 @@ var LogIn = React.createClass({
     return (
       <div className="logIn">
         <div className="row">
-          <h2 className="text-center"> What The Filter?! </h2>
+          <h1 className="text-center"> What The Filter?! </h1>
         </div>
         <div className="row">
           <div className="col-xs-3"></div>
           <div className="col-xs-6">
-          <p>You must log in to your Instagram account in order to use <em>WTF</em>. We use it solely to retrieve your photos and display filter data. We do not store any of the data or information related to your account.</p>
+            <p className="lead">You must log in to your Instagram account in order to use <em>WTF</em>. We use it solely to retrieve your photos and display their filter data. We do not store any of the data or information related to your account.</p>
           </div>
           <div className="col-xs-3"></div>
         </div>
         <div className="row logIn">
-          <div className="col-xs-3">
+          <div className="col-xs-3 col-md-5">
           </div>
-          <div className="col-xs-6">
-            <a href="http://localhost:3000/authorize_user" className="btn btn-default center-block">Log In</a>
+          <div className="col-xs-6 col-md-2">
+            <a href="http://localhost:3000/authorize_user" className="btn btn-lg btn-block btn-success center-block">Log In</a>
           </div>
-          <div className="col-xs-3">
+          <div className="col-xs-3 col-md-5">
           </div>
         </div>
       </div>
