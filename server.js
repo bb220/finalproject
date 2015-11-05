@@ -2,10 +2,18 @@
 var http = require('http');
 var express  = require('express');
 var ig = require('instagram-node').instagram();
+var Twitter = require('twitter');
 var app  = express();
 
+//Twitter configuration
+var client = new Twitter({
+	consumer_key: '',
+	consumer_secret:'',
+	access_token:'',
+	access_token_secret:'',
+});
 
-// configuration =================
+//IG configuration =================
 app.use(express.static(__dirname + '/public'));
 
 ig.use({
