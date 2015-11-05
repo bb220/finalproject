@@ -54,13 +54,54 @@ var Header = React.createClass({
   }
 });
 
+var SocialBox = React.createClass({
+  render: function() {
+    return(
+      <div className="modal fade" id="myModal">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-body">
+                <div className="row">
+                  <div className="col-xs-2"></div>
+                  <div className="col-xs-8">
+                    <div className="btn btn-info btn-lg center-block">Twitter</div>
+                  </div>
+                  <div className="col-xs-2"></div>
+                </div>
+                <div className="row">
+                  <div className="col-xs-2"></div>
+                  <div className="col-xs-8">
+                    <div className="btn btn-primary btn-lg center-block">facebook</div>
+                  </div>
+                  <div className="col-xs-2"></div>
+                </div>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      );
+  }
+});
 var Footer = React.createClass({
   render: function() {
     return (
       <nav className="navbar navbar-inverse navbar-fixed-bottom">
         <div className="container-fluid">
-          <p className="navbar-text navbar-left">statistic</p>
-          <p className="navbar-text">Share</p>
+          <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="">statistic</a>
+          </div>
+          <ul className="navbar-right">
+          <button type="button" className="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">Share</button>
+          </ul>
         </div>
       </nav>
       );
@@ -142,6 +183,7 @@ var OverallStream = React.createClass({
         <Header />
         <LogOut />
         <PhotoFeed />
+        <SocialBox />
         <Footer />
       </div>
       );
