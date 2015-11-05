@@ -2,11 +2,23 @@ var LogIn = React.createClass({
   render: function() {
     return (
       <div className="logIn">
-        <div className="row logIn">
-          <div className="col-xs-4">
+        <div className="row">
+          <h2 className="text-center"> What The Filter?! </h2>
+        </div>
+        <div className="row">
+          <div className="col-xs-3"></div>
+          <div className="col-xs-6">
+          <p>You must log in to your Instagram account in order to use <em>WTF</em>. We use it solely to retrieve your photos and display filter data. We do not store any of the data or information related to your account.</p>
           </div>
-          <div className="col-xs-2">
+          <div className="col-xs-3"></div>
+        </div>
+        <div className="row logIn">
+          <div className="col-xs-3">
+          </div>
+          <div className="col-xs-6">
             <a href="http://localhost:3000/authorize_user" className="btn btn-default center-block">Log In</a>
+          </div>
+          <div className="col-xs-3">
           </div>
         </div>
       </div>
@@ -18,12 +30,14 @@ var LogOut = React.createClass({
   render: function() {
     return (
     <div className="logOut">
-      <div className="col-xs-4">
+      <div className="row">
+        <div className="col-xs-4">
+        </div>
+        <div className="col-xs-2"></div>
+        <div className="col-xs-2 logOut">
+          <a href="http://localhost:3000/logOut" className="btn btn-default center-block">Log Out</a>
+        </div>
       </div>
-      <div className="col-xs-2"></div>
-      <div className="col-xs-2 logOut">
-            <a href="http://localhost:3000/logOut" className="btn btn-default center-block">Log Out</a>
-          </div>
     </div>
     );
   }
