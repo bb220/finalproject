@@ -91,17 +91,9 @@ var Footer = React.createClass({
       <nav className="navbar navbar-inverse navbar-fixed-bottom">
         <div className="container-fluid">
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-            <a className="navbar-brand" href="">statistic</a>
+            <p className="navbar-text">54% Filtered</p>
           </div>
-          <ul className="navbar-right">
-          <button type="button" className="btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal">Share</button>
-          </ul>
+          <button type="button" className="btn btn-default navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">Share</button>
         </div>
       </nav>
       );
