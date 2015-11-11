@@ -1,68 +1,108 @@
 // set up ========================
 var http = require('http');
 var express  = require('express');
+var twitterAPI = require('node-twitter-api');
 var ig = require('instagram-node').instagram();
 var app  = express();
 
+//Twitter configuration ================
+var twitter = new twitterAPI({
+  consumerKey: 'DrzfkfxgZaNR5X3K6vNxyrxkY',
+  consumerSecret: '',
+  callback: 'http://localhost:3000/#/stream/twitterAccess'
+});
+
+var twitterKeys = {
+  token: '',
+  secret:''
+};
+
+
+exports.authorize_twitter = function(req, res) {
+  twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
+    if(error) {
+      console.log("Error getting OAuth request token: ", error);
+    } else {
+      twitterKeys.token = requestToken;
+      console.log(twitterKeys.token);
+      twitterKeys.secret = requestTokenSecret;
+      console.log(twitterKeys.secret);
+      res.redirect(twitter.getAuthUrl(requestToken));
+    }
+  });
+};
+
+exports.twitterAccess = function(req, res) {
+  var verifier = req.param('oauth_verifier');
+  twitter.getAccessToken(twitterKeys.token, twitterKeys.secret, verifier, function(error, accessToken, accessTokenSecret, results){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Access: ");
+      console.log(accessToken);
+      console.log(accessTokenSecret);
+    }
+  });
+};
 //IG configuration =================
 app.use(express.static(__dirname + '/public'));
 
 ig.use({
-	client_id: '874eb5d83dfb4035a71c97faa154e0a9',
-	client_secret: '24a50386213c4d0bba6187a9669707ca'
+  client_id: '874eb5d83dfb4035a71c97faa154e0a9',
+  client_secret: '24a50386213c4d0bba6187a9669707ca'
 });
 
 var redirect_uri = 'http://localhost:3000/handleauth';
 
 
 exports.authorize_user = function(req, res) {
-	res.redirect(ig.get_authorization_url(redirect_uri, {scope: ['likes'], state: 'a state'}));
+  res.redirect(ig.get_authorization_url(redirect_uri, {scope: ['likes'], state: 'a state'}));
 };
 
 exports.handleauth  = function(req, res) {
-	ig.authorize_user(req.query.code, redirect_uri, function(err, result) {
-		if (err) {
-			console.log(err.body);
-			res.send("Didn't work");
-		} else {
-			user_id = result.user.id;
-			//console.log("Success: Access token is" + result.access_token);
-			ig.use({
-				client_id: '874eb5d83dfb4035a71c97faa154e0a9',
-				client_secret: '24a50386213c4d0bba6187a9669707ca',
-				access_token: result.access_token
-			});
-			res.redirect('http://localhost:3000/#/stream');
+  ig.authorize_user(req.query.code, redirect_uri, function(err, result) {
+    if (err) {
+      console.log(err.body);
+      res.send("Didn't work");
+    } else {
+      user_id = result.user.id;
+      //console.log("Success: Access token is" + result.access_token);
+      ig.use({
+        client_id: '874eb5d83dfb4035a71c97faa154e0a9',
+        client_secret: '24a50386213c4d0bba6187a9669707ca',
+        access_token: result.access_token
+      });
+      res.redirect('http://localhost:3000/#/stream');
 
-		}
-	});
+    }
+  });
 };
 
 var requestCount = 1;
 var options = {count:15, min_id:null, max_id:null};
 
 exports.loadPhotoFeed = function(req, res) {
-	//add options to retrieve next pages
-	ig.user_self_feed(options, function(err, medias, pagination, remaining, limit) {
-		if(err) {
-			console.log(err.body);
-		} else {
-			console.log("Successfully retrieved page " + requestCount);
-			options.max_id = pagination.next_max_id;
-			res.send(medias);
-			requestCount += 1;
-		}
-	});
+  //add options to retrieve next pages
+  ig.user_self_feed(options, function(err, medias, pagination, remaining, limit) {
+    if(err) {
+      console.log(err.body);
+    } else {
+      console.log("Successfully retrieved page " + requestCount);
+      options.max_id = pagination.next_max_id;
+      res.send(medias);
+      requestCount += 1;
+    }
+  });
 };
 
 exports.logOut = function(req, res) {
-	ig.use({
-				client_id: '874eb5d83dfb4035a71c97faa154e0a9',
-				client_secret: '24a50386213c4d0bba6187a9669707ca'
-			});
-	res.redirect('https://instagram.com/accounts/logout/');
-	requestCount = 1;
-	options.max_id = null;
+  ig.use({
+        client_id: '874eb5d83dfb4035a71c97faa154e0a9',
+        client_secret: '24a50386213c4d0bba6187a9669707ca'
+      });
+  res.redirect('https://instagram.com/accounts/logout/');
+  requestCount = 1;
+  options.max_id = null;
 }
 
 //send users to authorize
@@ -73,6 +113,10 @@ app.get('/handleauth', exports.handleauth);
 app.get('/loadPhotoFeed', exports.loadPhotoFeed);
 //to log user out
 app.get('/logOut', exports.logOut);
+//send users to authorize twitter
+app.get('/authorize_twitter', exports.authorize_twitter);
+//redirect uri 
+app.get('#/stream/twitterAccess', exports.twitterAccess); //USE REGEX TO MATCH THE REDIRECT AND GET ACCESS***************
 
 
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){

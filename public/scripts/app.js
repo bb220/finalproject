@@ -64,7 +64,9 @@ var SocialBox = React.createClass({
                 <div className="row">
                   <div className="col-xs-2"></div>
                   <div className="col-xs-8">
+                    <a href="http://localhost:3000/authorize_twitter">
                     <div className="btn btn-info btn-lg center-block">Twitter</div>
+                    </a>
                   </div>
                   <div className="col-xs-2"></div>
                 </div>
@@ -207,7 +209,8 @@ new logIn().render();
 //Backbone router
 var Router = Backbone.Router.extend({
   routes: {
-    "stream": 'streamScreen'
+    "stream": 'streamScreen',
+    "stream/*path": 'streamScreen'
   },
 
   streamScreen: function() {
