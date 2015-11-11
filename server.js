@@ -9,7 +9,7 @@ var app  = express();
 var twitter = new twitterAPI({
   consumerKey: 'DrzfkfxgZaNR5X3K6vNxyrxkY',
   consumerSecret: '',
-  callback: 'http://localhost:3000/#/stream/twitterAccess'
+  callback: 'http://localhost:3000/twitterAccess'
 });
 
 var twitterKeys = {
@@ -18,7 +18,7 @@ var twitterKeys = {
 };
 
 
-exports.authorize_twitter = function(req, res) {
+exports.authorizeTwitter = function(req, res) {
   twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
     if(error) {
       console.log("Error getting OAuth request token: ", error);
@@ -42,6 +42,7 @@ exports.twitterAccess = function(req, res) {
       console.log(accessToken);
       console.log(accessTokenSecret);
     }
+    res.redirect("http://localhost:3000/#/stream")
   });
 };
 //IG configuration =================
@@ -55,11 +56,11 @@ ig.use({
 var redirect_uri = 'http://localhost:3000/handleauth';
 
 
-exports.authorize_user = function(req, res) {
+exports.authorizeUser = function(req, res) {
   res.redirect(ig.get_authorization_url(redirect_uri, {scope: ['likes'], state: 'a state'}));
 };
 
-exports.handleauth  = function(req, res) {
+exports.handleAuth  = function(req, res) {
   ig.authorize_user(req.query.code, redirect_uri, function(err, result) {
     if (err) {
       console.log(err.body);
@@ -106,18 +107,17 @@ exports.logOut = function(req, res) {
 }
 
 //send users to authorize
-app.get('/authorize_user', exports.authorize_user);
+app.get('/authorize_user', exports.authorizeUser);
 //redirect uri
-app.get('/handleauth', exports.handleauth);
+app.get('/handleauth', exports.handleAuth);
 //for loading self feed
 app.get('/loadPhotoFeed', exports.loadPhotoFeed);
 //to log user out
 app.get('/logOut', exports.logOut);
 //send users to authorize twitter
-app.get('/authorize_twitter', exports.authorize_twitter);
+app.get('/authorize_twitter', exports.authorizeTwitter);
 //redirect uri 
-app.get('#/stream/twitterAccess', exports.twitterAccess); //USE REGEX TO MATCH THE REDIRECT AND GET ACCESS***************
-
+app.get('/twitterAccess', exports.twitterAccess);
 
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   console.log("Successfully Serving!");
