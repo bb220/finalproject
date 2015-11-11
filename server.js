@@ -8,7 +8,7 @@ var app  = express();
 //Twitter configuration ================
 var twitter = new twitterAPI({
   consumerKey: 'DrzfkfxgZaNR5X3K6vNxyrxkY',
-  consumerSecret: '',
+  consumerSecret: 'ahnTD0jJi7YRIBGdtcZRQHzgVQ5T66UJeB1jbOSCm44nNA5TyN',
   callback: 'http://localhost:3000/twitterAccess'
 });
 
@@ -42,6 +42,7 @@ exports.twitterAccess = function(req, res) {
       console.log(accessToken);
       console.log(accessTokenSecret);
     }
+    resetStreamCount();
     res.redirect("http://localhost:3000/#/stream")
   });
 };
@@ -80,6 +81,13 @@ exports.handleAuth  = function(req, res) {
 };
 
 var requestCount = 1;
+var resetStreamCount = function() {
+  //reset visual count
+  requestCount = 1;
+  //resets to most recent page
+  options.max_id = null;
+}
+
 var options = {count:15, min_id:null, max_id:null};
 
 exports.loadPhotoFeed = function(req, res) {
@@ -102,8 +110,7 @@ exports.logOut = function(req, res) {
         client_secret: '24a50386213c4d0bba6187a9669707ca'
       });
   res.redirect('https://instagram.com/accounts/logout/');
-  requestCount = 1;
-  options.max_id = null;
+  resetStreamCount();
 }
 
 //send users to authorize
