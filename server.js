@@ -39,13 +39,32 @@ exports.twitterAccess = function(req, res) {
       console.log(error);
     } else {
       console.log("Access: ");
-      console.log(accessToken);
-      console.log(accessTokenSecret);
+      twitterKeys.accessToken = accessToken;
+      console.log(twitterKeys.accessToken);
+      twitterKeys.accessTokenSecret = accessTokenSecret;
+      console.log(twitterKeys.accessTokenSecret);
     }
     resetStreamCount();
     res.redirect("http://localhost:3000/#/stream")
   });
 };
+
+exports.postStatus = function(req, res) {
+  twitter.statuses("update", {
+    status: "TEST"
+  },
+  twitterKeys.accessToken,
+  twitterKeys.accessTokenSecret,
+  function(error, data, response) {
+    if (error) {
+      res.send(error);
+    } else {
+      console.log(response);
+      }
+    }
+  );
+}
+
 //IG configuration =================
 app.use(express.static(__dirname + '/public'));
 
@@ -125,6 +144,7 @@ app.get('/logOut', exports.logOut);
 app.get('/authorize_twitter', exports.authorizeTwitter);
 //redirect uri 
 app.get('/twitterAccess', exports.twitterAccess);
+app.get('/postStatus', exports.postStatus);
 
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   console.log("Successfully Serving!");
