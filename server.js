@@ -144,6 +144,7 @@ app.get('/logOut', exports.logOut);
 app.get('/authorize_twitter', exports.authorizeTwitter);
 //redirect uri 
 app.get('/twitterAccess', exports.twitterAccess);
+//post status path
 app.get('/postStatus', exports.postStatus);
 
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
