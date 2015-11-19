@@ -54,6 +54,40 @@ var Header = React.createClass({
   }
 });
 
+var Twitter = React.createClass({
+  render: function() {
+    return(
+      <div className="row">
+        <div className="col-xs-2"></div>
+        <div className="col-xs-8">
+          <div className="btn btn-info btn-lg center-block" onClick={this.postTweet}>Twitter</div>
+        </div>
+        <div className="col-xs-2"></div>
+      </div>
+    );
+  },
+  postTweet: function() {
+    window.location.assign("http://localhost:3000/authorize_twitter");
+  }
+});
+
+var Facebook = React.createClass({
+  render: function() {
+    return (
+      <div className="row">
+        <div className="col-xs-2"></div>
+        <div className="col-xs-8">
+          <div className="btn btn-primary btn-lg center-block" onClick={this.postStatus}>facebook</div>
+        </div>
+        <div className="col-xs-2"></div>
+      </div>
+    );
+  },
+  postStatus: function() {
+    postAPI();
+  }
+});
+
 var SocialBox = React.createClass({
   render: function() {
     return(
@@ -61,22 +95,8 @@ var SocialBox = React.createClass({
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-body">
-                <div className="row">
-                  <div className="col-xs-2"></div>
-                  <div className="col-xs-8">
-                    <a href="http://localhost:3000/authorize_twitter">
-                    <div className="btn btn-info btn-lg center-block">Twitter</div>
-                    </a>
-                  </div>
-                  <div className="col-xs-2"></div>
-                </div>
-                <div className="row">
-                  <div className="col-xs-2"></div>
-                  <div className="col-xs-8">
-                    <div className="btn btn-primary btn-lg center-block">facebook</div>
-                  </div>
-                  <div className="col-xs-2"></div>
-                </div>
+                <Twitter />
+                <Facebook />
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
