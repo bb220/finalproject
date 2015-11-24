@@ -77,7 +77,7 @@ var Facebook = React.createClass({
       <div className="row">
         <div className="col-xs-2"></div>
         <div className="col-xs-8">
-          <div className="btn btn-primary btn-lg center-block" onClick={this.postStatus}>facebook</div>
+          <div className="btn btn-primary btn-lg center-block" onClick={this.logInFb}>facebook</div>
         </div>
         <div className="col-xs-2"></div>
       </div>
@@ -85,6 +85,9 @@ var Facebook = React.createClass({
   },
   postStatus: function() {
     postAPI();
+  },
+  logInFb: function() {
+    FB.login();
   }
 });
 
