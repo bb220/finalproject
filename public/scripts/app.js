@@ -87,7 +87,7 @@ var Facebook = React.createClass({
     postAPI();
   },
   logInFb: function() {
-    FB.login();
+    FB.login(function(){},{scope: 'publish_actions'});
   }
 });
 
@@ -98,6 +98,7 @@ var SocialBox = React.createClass({
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-body">
+                <h3 className="text-center">I can see which instagram filters are being used with <em>What The Filter?!</em></h3>
                 <Twitter />
                 <Facebook />
             </div>
