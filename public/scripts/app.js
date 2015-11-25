@@ -83,11 +83,10 @@ var Facebook = React.createClass({
       </div>
     );
   },
-  postStatus: function() {
-    postAPI();
-  },
   logInFb: function() {
-    FB.login(function(){},{scope: 'publish_actions'});
+    FB.login(function(){
+      postAPI();
+    },{scope: 'publish_actions'});
   }
 });
 
