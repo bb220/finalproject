@@ -68,15 +68,14 @@ exports.postStatus = function(req, res) {
 //IG configuration =================
 app.use(express.static(__dirname + '/public'));
 
-ig.use({
-  client_id: '874eb5d83dfb4035a71c97faa154e0a9',
-  client_secret: '24a50386213c4d0bba6187a9669707ca'
-});
-
 var redirect_uri = 'http://localhost:3000/handleauth';
 
-
 exports.authorizeUser = function(req, res) {
+  ig.use({
+  client_id: '874eb5d83dfb4035a71c97faa154e0a9',
+  client_secret: '24a50386213c4d0bba6187a9669707ca'
+  });
+  resetStreamCount();
   res.redirect(ig.get_authorization_url(redirect_uri, {scope: ['likes'], state: 'a state'}));
 };
 
