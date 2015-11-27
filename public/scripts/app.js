@@ -3,7 +3,7 @@ var LogIn = React.createClass({
     return (
       <div className="logIn">
         <div className="row">
-          <h1 className="text-center"> What The Filter?! </h1>
+          <h1 className="text-center"> What The Filter </h1>
         </div>
         <div className="row">
           <div className="col-xs-3"></div>
@@ -48,7 +48,7 @@ var Header = React.createClass({
   render: function() {
     return (
       <nav>
-          <h1 className="text-center">What The Filter?!</h1>
+          <h1 className="text-center">What The Filter</h1>
       </nav>
       );
   }
@@ -111,7 +111,7 @@ var SocialBox = React.createClass({
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-body">
-                <h3 className="text-center">I can see which instagram filters are being used with <em>What The Filter?!</em></h3>
+                <h3 className="text-center">I can see which instagram filters are being used with <em>What The Filter</em></h3>
                 <Twitter />
                 <Facebook />
                 <Message />
@@ -125,13 +125,15 @@ var SocialBox = React.createClass({
       );
   }
 });
+
+
 var Footer = React.createClass({
   render: function() {
     return (
       <nav className="navbar navbar-inverse navbar-fixed-bottom">
         <div className="container-fluid">
           <div className="navbar-header">
-            <p className="navbar-text">54% Filtered</p>
+            <p className="navbar-text">{this.props.filteredcount}/{this.props.totalcount} Photos Filtered</p>
           </div>
           <button type="button" className="btn btn-default navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">Share</button>
         </div>
@@ -168,6 +170,7 @@ var PhotoFeed = React.createClass({
 
   render: function() {
     var responseLength = this.state.response.length;
+    totalCount += responseLength;
     for(var i = 0; i < responseLength; i++) {
       if (i == responseLength - 3) {
         rows.push(
@@ -184,11 +187,17 @@ var PhotoFeed = React.createClass({
           </div>
           );
       } 
+      if(this.state.response[i].filter !== "Normal"){
+        filteredCount += 1;
+      }
+
     }
     return(
       <div className="photoFeed" >
           {rows}
+          <Footer filteredcount={filteredCount} totalcount={totalCount} response={this.state.response} />
       </div>
+
     );
   }
 });
@@ -206,6 +215,8 @@ var Photo = React.createClass ({
 
 //Global variables
 var rows =[];
+var filteredCount = 0;
+var totalCount = 0;
 var requestUrl = "http://localhost:3000/loadPhotoFeed";
 
 var OverallStream = React.createClass({
@@ -216,7 +227,6 @@ var OverallStream = React.createClass({
         <LogOut />
         <PhotoFeed />
         <SocialBox />
-        <Footer />
       </div>
       );
   }
