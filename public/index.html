@@ -98,7 +98,11 @@
     });
   }
   function postAPI() {
-    FB.api('/me/feed', 'post', {message: 'I can see which instagram filters are being used with What The Filter?!'});
+    FB.api('/me/feed', 'post', {message: 'I can see which instagram filters are being used with What The Filter?!'}, function(response) {
+      if(response && !response.error) {
+        $('.message-text').css({"visibility":"visible"});
+      }
+    });
   }
 </script>
 <script type="text/jsx" src="scripts/app.js"></script>

@@ -16,6 +16,9 @@
    padding: 10px; 
 }
 
+.message-text {
+	visibility: hidden;
+}
 .photoFeed {
 	margin-top: 80px;
 }

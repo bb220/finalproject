@@ -90,6 +90,20 @@ var Facebook = React.createClass({
   }
 });
 
+var Message = React.createClass({
+  render: function() {
+    return (
+      <div className="row">
+        <div className="col-xs-2"></div>
+        <div className="col-xs-8">
+          <h4 className="text-center message-text">success</h4>
+        </div>
+        <div className="col-xs-2"></div>
+      </div>
+      );
+  }
+});
+
 var SocialBox = React.createClass({
   render: function() {
     return(
@@ -100,6 +114,7 @@ var SocialBox = React.createClass({
                 <h3 className="text-center">I can see which instagram filters are being used with <em>What The Filter?!</em></h3>
                 <Twitter />
                 <Facebook />
+                <Message />
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
