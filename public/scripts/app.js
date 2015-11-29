@@ -3,14 +3,17 @@ var LogIn = React.createClass({
     return (
       <div className="logIn">
         <div className="row">
+          <div className="space"></div>
+        </div>
+        <div className="row">
           <h1 className="text-center"> What The Filter </h1>
         </div>
         <div className="row">
-          <div className="col-xs-3"></div>
-          <div className="col-xs-6">
-            <p className="lead">You must log in to your Instagram account in order to use <em>WTF</em>. We use it solely to retrieve your photos and display their filter data. We do not store any of the data or information related to your account.</p>
+          <div className="col-sm-1 col-md-3"></div>
+          <div className="col-sm-10 col-md-6">
+            <h3 className="text-center">Log in to your Instagram account to use <em>WTF</em></h3>
           </div>
-          <div className="col-xs-3"></div>
+          <div className="col-sm-1 col-md-3"></div>
         </div>
         <div className="row logIn">
           <div className="col-xs-3 col-md-5">
@@ -133,9 +136,19 @@ var Footer = React.createClass({
       <nav className="navbar navbar-inverse navbar-fixed-bottom">
         <div className="container-fluid">
           <div className="navbar-header">
-            <p className="navbar-text">{this.props.filteredcount}/{this.props.totalcount} Photos Filtered</p>
+            <button type="button" className="navbar-toggle collapsed btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal" aria-expanded="false">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="#">{this.props.filteredcount}/{this.props.totalcount} Photos Filtered</a>
           </div>
-          <button type="button" className="btn btn-default navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">Share</button>
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul className="nav navbar-nav navbar-right">
+              <button type="button" className="btn btn-default navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">Share</button>
+            </ul>
+          </div>
         </div>
       </nav>
       );
@@ -206,7 +219,7 @@ var Photo = React.createClass ({
     render: function() {
         return(
             <div className="photo">
-                <img src={this.props.imagesrc} className="center-block"/> 
+                <img src={this.props.imagesrc} className="img-responsive center-block"/> 
                 <h2 className="text-center"><span>{this.props.filter}</span></h2>
             </div>
             );
