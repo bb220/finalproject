@@ -75,6 +75,11 @@ var Twitter = React.createClass({
 });
 
 var Facebook = React.createClass({
+  logInFb: function() {
+    FB.login(function(){
+      postAPI("There are " + filteredCount + " photos in my Instagram feed using a filter! WhatTheFilter?!");
+    },{scope: 'publish_actions'});
+  },
   render: function() {
     return (
       <div className="row fbrow">
@@ -85,11 +90,6 @@ var Facebook = React.createClass({
         <div className="col-xs-2"></div>
       </div>
     );
-  },
-  logInFb: function() {
-    FB.login(function(){
-      postAPI();
-    },{scope: 'publish_actions'});
   }
 });
 
@@ -114,9 +114,9 @@ var SocialBox = React.createClass({
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-body">
-                <h3 className="text-center">I can see which instagram filters are being used with <em>What The Filter</em></h3>
+                <h3 className="text-center">There are {this.props.filteredcount} photos in my Instagram feed using a filter, <em>WhatTheFilter?!</em></h3>
                 <Twitter />
-                <Facebook />
+                <Facebook filteredcount={this.props.filteredcount} />
                 <Message />
             </div>
             <div className="modal-footer">
@@ -207,7 +207,8 @@ var PhotoFeed = React.createClass({
     return(
       <div className="photoFeed" >
           {rows}
-          <Footer filteredcount={filteredCount} totalcount={totalCount} response={this.state.response} />
+          <Footer filteredcount={filteredCount} totalcount={totalCount} />
+          <SocialBox filteredcount={filteredCount} totalcount={totalCount} />
       </div>
 
     );
@@ -238,7 +239,6 @@ var OverallStream = React.createClass({
         <Header />
         <LogOut />
         <PhotoFeed />
-        <SocialBox />
       </div>
       );
   }
