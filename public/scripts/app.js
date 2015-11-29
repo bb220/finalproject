@@ -136,17 +136,16 @@ var Footer = React.createClass({
       <nav className="navbar navbar-inverse navbar-fixed-bottom">
         <div className="container-fluid">
           <div className="navbar-header">
-            <button type="button" className="navbar-toggle collapsed btn btn-default navbar-btn" data-toggle="modal" data-target="#myModal" aria-expanded="false">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
+            <button type="button" className=" share-btn navbar-toggle collapsed btn navbar-btn" data-toggle="modal" data-target="#myModal" aria-expanded="false" aria-label="share">
+              <span className="glyphicon glyphicon-share" aria-hidden="true"></span>
             </button>
-            <a className="navbar-brand" href="#">{this.props.filteredcount}/{this.props.totalcount} Photos Filtered</a>
+            <a className="navbar-brand">{this.props.filteredcount}/{this.props.totalcount} Photos Filtered</a>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
-              <button type="button" className="btn btn-default navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">Share</button>
+              <button type="button" className="share-btn btn navbar-btn navbar-right" data-toggle="modal" data-target="#myModal">
+              <span className="glyphicon glyphicon-share" aria-hidden="true"></span>
+              </button>
             </ul>
           </div>
         </div>

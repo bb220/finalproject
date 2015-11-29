@@ -22,6 +22,7 @@
    border-radius: 20px;
    padding: 10px; 
 }
+
 @media (max-width: 750px) {
 	.photo h2 {
 		margin-left: -13%;
@@ -29,6 +30,33 @@
 	}
 }
 
+.share-btn {
+	border-color: #333;
+	background-color: transparent;
+	border: 1px solid transparent;
+	color: #fff;
+	outline:none;
+}
+
+.share-btn:hover {
+	background-color: transparent;
+	border-color: transparent;
+
+}
+
+.share-btn:focus {
+	color:#fff;
+	background-color: transparent;
+	border-color: transparent;
+	outline: none;
+}
+
+.share-btn:active {
+	color:#fff;
+	background-color: transparent;
+	border-color: transparent;
+	outline: none;
+}
 
 .message-text {
 	visibility: hidden;
