@@ -60,7 +60,7 @@ var Header = React.createClass({
 var Twitter = React.createClass({
   render: function() {
     return(
-      <div className="row">
+      <div className="row trow">
         <div className="col-xs-2"></div>
         <div className="col-xs-8">
           <div className="btn btn-info btn-lg center-block" onClick={this.postTweet}>Twitter</div>
@@ -77,7 +77,7 @@ var Twitter = React.createClass({
 var Facebook = React.createClass({
   render: function() {
     return (
-      <div className="row">
+      <div className="row fbrow">
         <div className="col-xs-2"></div>
         <div className="col-xs-8">
           <div className="btn btn-primary btn-lg center-block" onClick={this.logInFb}>facebook</div>

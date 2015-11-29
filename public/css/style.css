@@ -38,6 +38,17 @@
 	outline:none;
 }
 
+.trow {
+	padding-top: 2em;
+}
+.fbrow {
+	padding-top: 1em;
+}
+
+.modal-dialog {
+	padding-top: 5em;
+}
+
 .share-btn:hover {
 	background-color: transparent;
 	border-color: transparent;
