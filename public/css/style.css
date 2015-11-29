@@ -1,3 +1,5 @@
+
+
 .photo {
 	position: relative;
 	padding-bottom: 20px;
@@ -10,7 +12,8 @@
 .photo h2 {
 	position: absolute;
 	top: 70%;
-	left: 46%;
+	margin-left: -4%;
+	left: 50%;
 	color: white; 
    font: bold 24px/45px Helvetica, Sans-Serif; 
    letter-spacing: -1px;  
@@ -19,6 +22,13 @@
    border-radius: 20px;
    padding: 10px; 
 }
+@media (max-width: 750px) {
+	.photo h2 {
+		margin-left: -13%;
+		left: 50%;
+	}
+}
+
 
 .message-text {
 	visibility: hidden;
