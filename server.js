@@ -22,6 +22,7 @@ var twitterKeys = {
 var twitterMessage;
 
 exports.updateMessage = function(req, res) {
+  twitterMessage = "There are " + req.body.count +" photos in my Instagram feed using a filter! WhatTheFilter?!";
   console.log(req.body.count);
   res.send('cool');
 };
@@ -54,13 +55,14 @@ exports.twitterAccess = function(req, res) {
       console.log(twitterKeys.accessTokenSecret);
     }
     resetStreamCount();
+    res.on("finish", exports.postStatus);
     res.redirect("http://localhost:3000/#/success");
   });
 };
 
 exports.postStatus = function() {
   twitter.statuses("update", {
-    status: "There are photos in my Instagram feed using a filter! WhatTheFilter?!"
+    status: twitterMessage
   },
   twitterKeys.accessToken,
   twitterKeys.accessTokenSecret,
