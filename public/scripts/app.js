@@ -63,14 +63,14 @@ var Twitter = React.createClass({
       <div className="row trow">
         <div className="col-xs-2"></div>
         <div className="col-xs-8">
-          <div className="btn btn-info btn-lg center-block" onClick={this.postTweet}>Twitter</div>
+          <div className="btn btn-info btn-lg center-block" onClick={this.startTweet}>Twitter</div>
         </div>
         <div className="col-xs-2"></div>
       </div>
     );
   },
-  postTweet: function() {
-    window.location.assign("http://localhost:3000/authorize_twitter");
+  startTweet: function() {
+    window.open("http://localhost:3000/authorize_twitter", "", "width=600, height=200");
   }
 });
 
@@ -266,16 +266,29 @@ var logIn = Backbone.View.extend({
 
 new logIn().render();
 
+var success = Backbone.View.extend({
+  el: '#content',
+  template: '<div class="success"></div>',
+  render: function() {
+    window.close();
+  }
+});
+
 //Backbone router
 var Router = Backbone.Router.extend({
   routes: {
     "stream": 'streamScreen',
-    "stream/*path": 'streamScreen'
+    "stream/*path": 'streamScreen',
+    "success": 'success'
   },
 
   streamScreen: function() {
     console.log('streamScreen!');
     new overallStream().render();
+  },
+
+  success: function() {
+    new success().render();
   }
 
 });

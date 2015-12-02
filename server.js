@@ -1,5 +1,6 @@
 // set up ========================
 var http = require('http');
+var https = require('https');
 var express  = require('express');
 var twitterAPI = require('node-twitter-api');
 var ig = require('instagram-node').instagram();
@@ -46,13 +47,13 @@ exports.twitterAccess = function(req, res) {
     }
     resetStreamCount();
     res.on('finish', exports.postStatus);
-    res.redirect("http://localhost:3000/#/stream");
+    res.redirect("http://localhost:3000/#/success");
   });
 };
 
 exports.postStatus = function() {
   twitter.statuses("update", {
-    status: "TEST MESSAGE"
+    status: "There are photos in my Instagram feed using a filter! WhatTheFilter?!"
   },
   twitterKeys.accessToken,
   twitterKeys.accessTokenSecret,
