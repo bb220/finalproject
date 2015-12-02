@@ -1,11 +1,12 @@
 // set up ========================
 var http = require('http');
-var https = require('https');
+var bodyParser = require('body-parser');
 var express  = require('express');
 var twitterAPI = require('node-twitter-api');
 var ig = require('instagram-node').instagram();
 var app  = express();
 
+app.use(bodyParser.json());
 //Twitter configuration ================
 var twitter = new twitterAPI({
   consumerKey: 'DrzfkfxgZaNR5X3K6vNxyrxkY',
@@ -16,6 +17,13 @@ var twitter = new twitterAPI({
 var twitterKeys = {
   token: '',
   secret:''
+};
+
+var twitterMessage;
+
+exports.updateMessage = function(req, res) {
+  console.log(req.body.count);
+  res.send('cool');
 };
 
 
@@ -46,7 +54,6 @@ exports.twitterAccess = function(req, res) {
       console.log(twitterKeys.accessTokenSecret);
     }
     resetStreamCount();
-    res.on('finish', exports.postStatus);
     res.redirect("http://localhost:3000/#/success");
   });
 };
@@ -145,8 +152,11 @@ app.get('/logOut', exports.logOut);
 app.get('/authorize_twitter', exports.authorizeTwitter);
 //redirect uri 
 app.get('/twitterAccess', exports.twitterAccess);
+//update message
+app.post('/updateMessage', exports.updateMessage);
 //post status path
 app.get('/postStatus', exports.postStatus);
+
 
 app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
   console.log("Successfully Serving!");
