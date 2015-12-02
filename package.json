@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/bb220/finalproject",
   "dependencies": {
-    "express": "^4.13.3",
-    "instagram-node": "^0.5.8",
-    "node-twitter-api": "^1.6.1"
+    "express": "4.13.3",
+    "instagram-node": "0.5.8",
+    "node-twitter-api": "1.6.1"
   }
 }
