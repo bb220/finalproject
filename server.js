@@ -45,11 +45,12 @@ exports.twitterAccess = function(req, res) {
       console.log(twitterKeys.accessTokenSecret);
     }
     resetStreamCount();
-    res.redirect("http://localhost:3000/postStatus")
+    res.on('finish', exports.postStatus);
+    res.redirect("http://localhost:3000/#/stream");
   });
 };
 
-exports.postStatus = function(req, res) {
+exports.postStatus = function() {
   twitter.statuses("update", {
     status: "TEST MESSAGE"
   },
@@ -57,13 +58,12 @@ exports.postStatus = function(req, res) {
   twitterKeys.accessTokenSecret,
   function(error, data, response) {
     if (error) {
-      res.send(error);
+      console.log(error);
     } else {
       console.log(response);
       }
     }
   );
-  res.redirect('http://localhost:3000/#/stream');
 }
 
 //IG configuration =================
