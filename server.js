@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 var twitter = new twitterAPI({
   consumerKey: 'DrzfkfxgZaNR5X3K6vNxyrxkY',
   consumerSecret: 'ahnTD0jJi7YRIBGdtcZRQHzgVQ5T66UJeB1jbOSCm44nNA5TyN',
-  callback: '/twitterAccess'
+  callback: 'https://guarded-reaches-5919.herokuapp.com/twitterAccess'
 });
 
 var twitterKeys = {
