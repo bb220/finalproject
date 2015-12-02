@@ -19,7 +19,7 @@ var LogIn = React.createClass({
           <div className="col-xs-3 col-md-5">
           </div>
           <div className="col-xs-6 col-md-2">
-            <a href="http://localhost:3000/authorize_user" className="btn btn-lg btn-block btn-success center-block">Log In</a>
+            <a href="/authorize_user" className="btn btn-lg btn-block btn-success center-block">Log In</a>
           </div>
           <div className="col-xs-3 col-md-5">
           </div>
@@ -37,7 +37,7 @@ var LogOut = React.createClass({
         <div className="col-xs-3 col-md-5">
         </div>
         <div className="col-xs-6 col-md-2 logOut">
-          <a href="http://localhost:3000/logOut" className="btn btn-default center-block">Log Out</a>
+          <a href="/logOut" className="btn btn-default center-block">Log Out</a>
         </div>
         <div className="col-xs-3 col-md-5"></div>
       </div>
@@ -70,7 +70,7 @@ var Twitter = React.createClass({
     );
   },
   startTweet: function() {
-    window.open("http://localhost:3000/authorize_twitter", "", "width=600, height=200");
+    window.open("/authorize_twitter", "", "width=600, height=200");
     var data = JSON.stringify({count: filteredCount});
     $.ajax({
       type: "POST",
@@ -241,7 +241,7 @@ var Photo = React.createClass ({
 var rows =[];
 var filteredCount = 0;
 var totalCount = 0;
-var requestUrl = "http://localhost:3000/loadPhotoFeed";
+var requestUrl = "/loadPhotoFeed";
 
 var OverallStream = React.createClass({
   render: function() {

@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 var twitter = new twitterAPI({
   consumerKey: 'DrzfkfxgZaNR5X3K6vNxyrxkY',
   consumerSecret: 'ahnTD0jJi7YRIBGdtcZRQHzgVQ5T66UJeB1jbOSCm44nNA5TyN',
-  callback: 'http://localhost:3000/twitterAccess'
+  callback: '/twitterAccess'
 });
 
 var twitterKeys = {
@@ -56,7 +56,7 @@ exports.twitterAccess = function(req, res) {
     }
     resetStreamCount();
     res.on("finish", exports.postStatus);
-    res.redirect("http://localhost:3000/#/success");
+    res.redirect("/#/success");
   });
 };
 
@@ -79,7 +79,7 @@ exports.postStatus = function() {
 //IG configuration =================
 app.use(express.static(__dirname + '/public'));
 
-var redirect_uri = 'http://localhost:3000/handleauth';
+var redirect_uri = '/handleauth';
 
 exports.authorizeUser = function(req, res) {
   ig.use({
@@ -103,7 +103,7 @@ exports.handleAuth  = function(req, res) {
         client_secret: '24a50386213c4d0bba6187a9669707ca',
         access_token: result.access_token
       });
-      res.redirect('http://localhost:3000/#/stream');
+      res.redirect('/#/stream');
 
     }
   });
