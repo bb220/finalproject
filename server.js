@@ -79,7 +79,7 @@ exports.postStatus = function() {
 //IG configuration =================
 app.use(express.static(__dirname + '/public'));
 
-var redirect_uri = '/handleauth';
+var redirect_uri = 'https://guarded-reaches-5919.herokuapp.com/handleauth';
 
 exports.authorizeUser = function(req, res) {
   ig.use({
