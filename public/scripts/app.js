@@ -177,14 +177,11 @@ var PhotoFeed = React.createClass({
   },
 
   loadMore: function() {
-    if (!alreadyPassed){
       this.loadPhotosFromServer();
-    }
-    
   },
 
   markPass: function() {
-    var alreadyPassed = true;
+    this.loadMore = {};
   },
 
   render: function() {
