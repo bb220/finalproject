@@ -138,7 +138,7 @@ exports.logOut = function(req, res) {
         client_id: '874eb5d83dfb4035a71c97faa154e0a9',
         client_secret: '24a50386213c4d0bba6187a9669707ca'
       });
-  res.redirect('https://instagram.com/accounts/logout/');
+  res.redirect('https://whatthefilter.herokuapp.com/');
   resetStreamCount();
 }
 
