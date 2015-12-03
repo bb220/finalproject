@@ -108,10 +108,6 @@ var Waypoint = React.createClass({
           this.props.onEnter.call(this, event);
           this.props.passed = "true";
         }
-        else {
-          this.props.passed = "true";
-        }
-      }
       } else if (this._previousPosition === POSITIONS.inside) {
         this.props.onLeave.call(this, event);
       }
