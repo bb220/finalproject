@@ -153,7 +153,7 @@ var Footer = React.createClass({
       );
   }
 });
-var scrollTop = document.documentElement.scrollTop;
+
 var PhotoFeed = React.createClass({
 
   loadPhotosFromServer: function() {
@@ -177,13 +177,7 @@ var PhotoFeed = React.createClass({
   },
 
   loadMore: function() {
-    if(document.documentElement.scrollTop > scrollTop) {
-      this.loadPhotosFromServer();
-    }
-    else{
-      scrollTop = document.documentElement.scrollTop;
-    }
-    
+    this.loadPhotosFromServer();
   },
 
   render: function() {
