@@ -154,8 +154,6 @@ var Footer = React.createClass({
   }
 });
 
-var alreadyPassed = false;
-
 var PhotoFeed = React.createClass({
 
   loadPhotosFromServer: function() {
@@ -179,14 +177,8 @@ var PhotoFeed = React.createClass({
   },
 
   loadMore: function() {
-     
-    if( this.props.alreadyPassed === 'false') {
-      this.loadPhotosFromServer();
-    }
-    else {
-      this.props.alreadyPassed = true;
-    }
-    
+    console.log(this.getDOMnode().scrollTop());
+    this.loadPhotosFromServer();
   },
 
   render: function() {
@@ -197,7 +189,7 @@ var PhotoFeed = React.createClass({
         rows.push(
           <div className="photo">
             <Photo count={i} imagesrc={this.state.response[i].images.standard_resolution.url} filter={this.state.response[i].filter} />
-            <Waypoint onEnter={this.loadMore} alreadyPassed='false' />
+            <Waypoint onEnter={this.loadMore} />
           </div>
           );
       }
