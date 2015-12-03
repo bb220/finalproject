@@ -79,10 +79,8 @@ var Twitter = React.createClass({
       dataType: 'json',
       data: data,
       success: function() {
-        console.log(success);
+        $('.message-text').css({"visibility":"visible", "color": "#58AEE8"});
       }
-    }, function() {
-      $('.message-text').css({"visibility":"visible", "color": "#58AEE8"});
     });
   }
 });
