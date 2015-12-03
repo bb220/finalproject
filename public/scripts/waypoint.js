@@ -97,7 +97,6 @@ var Waypoint = React.createClass({
    *   called by a React lifecyle method
    */
   _handleScroll: function _handleScroll(event) {
-  if (this.props.passed === "false"){
     var currentPosition = this._currentPosition();
       if (this._previousPosition === currentPosition) {
         // No change since last trigger
@@ -105,7 +104,14 @@ var Waypoint = React.createClass({
       }
 
       if (currentPosition === POSITIONS.inside) {
-        this.props.onEnter.call(this, event);
+        if (this.props.passed === "false"){
+          this.props.onEnter.call(this, event);
+          this.props.passed = "true";
+        }
+        else {
+          this.props.passed = "true";
+        }
+      }
       } else if (this._previousPosition === POSITIONS.inside) {
         this.props.onLeave.call(this, event);
       }
@@ -120,11 +126,6 @@ var Waypoint = React.createClass({
       }
 
       this._previousPosition = currentPosition;
-      this.props.passed = "true";
-    }
-    else {
-      this.props.passed = "true";
-    }
   },
 
   /**
