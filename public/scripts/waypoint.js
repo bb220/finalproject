@@ -20,7 +20,8 @@ var Waypoint = React.createClass({
     onLeave: PropTypes.func,
     // threshold is percentage of the height of the visible part of the
     // scrollable ancestor (e.g. 0.1)
-    threshold: PropTypes.number
+    threshold: PropTypes.number,
+    passed: PropTypes.string
   },
 
   /**
@@ -30,7 +31,8 @@ var Waypoint = React.createClass({
     return {
       threshold: 0,
       onEnter: function onEnter() {},
-      onLeave: function onLeave() {}
+      onLeave: function onLeave() {},
+      passed: "false"
     };
   },
 
@@ -47,7 +49,6 @@ var Waypoint = React.createClass({
   },
 
   componentWillUnmount: function componentWillUnmount() {
-    var passed = false;
     if (this.scrollableAncestor) {
       // At the time of unmounting, the scrollable ancestor might no longer
       // exist. Guarding against this prevents the following error:
@@ -96,8 +97,8 @@ var Waypoint = React.createClass({
    *   called by a React lifecyle method
    */
   _handleScroll: function _handleScroll(event) {
+  if (this.props.passed === "false"){
     var currentPosition = this._currentPosition();
-    if (this.props.passed === "false"){
       if (this._previousPosition === currentPosition) {
         // No change since last trigger
         return;
@@ -119,6 +120,7 @@ var Waypoint = React.createClass({
       }
 
       this._previousPosition = currentPosition;
+      this.props.passed = "true";
     }
     else {
       this.props.passed = "true";
