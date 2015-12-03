@@ -20,8 +20,7 @@ var Waypoint = React.createClass({
     onLeave: PropTypes.func,
     // threshold is percentage of the height of the visible part of the
     // scrollable ancestor (e.g. 0.1)
-    threshold: PropTypes.number,
-    passed: PropTypes.string
+    threshold: PropTypes.number
   },
 
   /**
@@ -31,8 +30,7 @@ var Waypoint = React.createClass({
     return {
       threshold: 0,
       onEnter: function onEnter() {},
-      onLeave: function onLeave() {},
-      passed: "false"
+      onLeave: function onLeave() {}
     };
   },
 
