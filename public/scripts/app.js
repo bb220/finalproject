@@ -177,11 +177,7 @@ var PhotoFeed = React.createClass({
   },
 
   loadMore: function() {
-      this.loadPhotosFromServer();
-  },
-
-  markPass: function() {
-    this.loadMore = {};
+    this.loadPhotosFromServer();
   },
 
   render: function() {
@@ -192,7 +188,7 @@ var PhotoFeed = React.createClass({
         rows.push(
           <div className="photo">
             <Photo count={i} imagesrc={this.state.response[i].images.standard_resolution.url} filter={this.state.response[i].filter} />
-            <Waypoint onEnter={this.loadMore} onLeave={this.markPass} />
+            <Waypoint onEnter={this.loadMore} />
           </div>
           );
       }
