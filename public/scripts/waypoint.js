@@ -30,8 +30,7 @@ var Waypoint = React.createClass({
     return {
       threshold: 0,
       onEnter: function onEnter() {},
-      onLeave: function onLeave() {},
-      passed: false
+      onLeave: function onLeave() {}
     };
   },
 
@@ -98,7 +97,7 @@ var Waypoint = React.createClass({
    */
   _handleScroll: function _handleScroll(event) {
     var currentPosition = this._currentPosition();
-    if (this.props.passed == false){
+    if (this.props.passed === "false"){
       if (this._previousPosition === currentPosition) {
         // No change since last trigger
         return;
@@ -122,7 +121,7 @@ var Waypoint = React.createClass({
       this._previousPosition = currentPosition;
     }
     else {
-      this.props.passed = true;
+      this.props.passed = "true";
     }
   },
 
