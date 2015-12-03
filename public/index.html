@@ -108,6 +108,7 @@
   function tweetProcess() {
     window.open("/authorize_twitter", "", "width=600, height=200");
     var data = JSON.stringify({count: filteredCount});
+    var suc;
     $.ajax({
       type: "POST",
       url: '/updateMessage',
@@ -115,10 +116,12 @@
       dataType: 'json',
       data: data,
       success: function() {
-        console.log(great);
+        suc = true;
       }
     });
-    $('.message-text').delay(3000).css({"visibility":"visible", "color": "#58AEE8"});
+    if (suc) {
+      $('.message-text').css({"visibility":"visible", "color": "#58AEE8"});
+    }
   }
 </script>
 <script type="text/jsx" src="scripts/app.js"></script>
