@@ -177,7 +177,7 @@ var PhotoFeed = React.createClass({
   },
 
   loadMore: function() {
-    console.log(this.getDOMnode().scrollTop());
+    console.log($(this.getDOMnode()).scrollTop());
     this.loadPhotosFromServer();
   },
 
