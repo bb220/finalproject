@@ -101,7 +101,7 @@
   function postAPI(postText) {
     FB.api('/me/feed', 'post', {message: postText}, function(response) {
       if(response && !response.error) {
-        $('.message-text').css({"visibility":"visible"});
+        $('.message-text').css({"visibility":"visible", "color":"#43609C"});
       }
     });
   }
