@@ -47,6 +47,7 @@ var Waypoint = React.createClass({
   },
 
   componentWillUnmount: function componentWillUnmount() {
+    var passed = false;
     if (this.scrollableAncestor) {
       // At the time of unmounting, the scrollable ancestor might no longer
       // exist. Guarding against this prevents the following error:
@@ -96,28 +97,32 @@ var Waypoint = React.createClass({
    */
   _handleScroll: function _handleScroll(event) {
     var currentPosition = this._currentPosition();
+    if (!passed){
+      if (this._previousPosition === currentPosition) {
+        // No change since last trigger
+        return;
+      }
 
-    if (this._previousPosition === currentPosition) {
-      // No change since last trigger
-      return;
+      if (currentPosition === POSITIONS.inside) {
+        this.props.onEnter.call(this, event);
+      } else if (this._previousPosition === POSITIONS.inside) {
+        this.props.onLeave.call(this, event);
+      }
+
+      var isRapidScrollDown = this._previousPosition === POSITIONS.below && currentPosition === POSITIONS.above;
+      var isRapidScrollUp = this._previousPosition === POSITIONS.above && currentPosition === POSITIONS.below;
+      if (isRapidScrollDown || isRapidScrollUp) {
+        // If the scroll event isn't fired often enough to occur while the
+        // waypoint was visible, we trigger both callbacks anyway.
+        this.props.onEnter.call(this, event);
+        this.props.onLeave.call(this, event);
+      }
+
+      this._previousPosition = currentPosition;
     }
-
-    if (currentPosition === POSITIONS.inside) {
-      this.props.onEnter.call(this, event);
-    } else if (this._previousPosition === POSITIONS.inside) {
-      this.props.onLeave.call(this, event);
+    else {
+      passed = true;
     }
-
-    var isRapidScrollDown = this._previousPosition === POSITIONS.below && currentPosition === POSITIONS.above;
-    var isRapidScrollUp = this._previousPosition === POSITIONS.above && currentPosition === POSITIONS.below;
-    if (isRapidScrollDown || isRapidScrollUp) {
-      // If the scroll event isn't fired often enough to occur while the
-      // waypoint was visible, we trigger both callbacks anyway.
-      this.props.onEnter.call(this, event);
-      this.props.onLeave.call(this, event);
-    }
-
-    this._previousPosition = currentPosition;
   },
 
   /**
