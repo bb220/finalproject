@@ -112,12 +112,6 @@ var Waypoint = React.createClass({
 
     var isRapidScrollDown = this._previousPosition === POSITIONS.below && currentPosition === POSITIONS.above;
     var isRapidScrollUp = this._previousPosition === POSITIONS.above && currentPosition === POSITIONS.below;
-    if (isRapidScrollDown || isRapidScrollUp) {
-      // If the scroll event isn't fired often enough to occur while the
-      // waypoint was visible, we trigger both callbacks anyway.
-      this.props.onEnter.call(this, event);
-      this.props.onLeave.call(this, event);
-    }
 
     this._previousPosition = currentPosition;
   },
