@@ -154,6 +154,8 @@ var Footer = React.createClass({
   }
 });
 
+
+
 var PhotoFeed = React.createClass({
 
   loadPhotosFromServer: function() {
@@ -177,8 +179,14 @@ var PhotoFeed = React.createClass({
   },
 
   loadMore: function() {
-    this.loadPhotosFromServer();
-    console.log(this.scrollTop());
+    var alreadyPassed = false; 
+    if(!alreadyPassed) {
+      this.loadPhotosFromServer();
+    }
+    else {
+      alreadyPassed = true;
+    }
+    
   },
 
   render: function() {
