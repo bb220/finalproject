@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 var twitter = new twitterAPI({
   consumerKey: 'DrzfkfxgZaNR5X3K6vNxyrxkY',
   consumerSecret: 'ahnTD0jJi7YRIBGdtcZRQHzgVQ5T66UJeB1jbOSCm44nNA5TyN',
-  callback: 'https://guarded-reaches-5919.herokuapp.com/twitterAccess'
+  callback: 'https://whatthefilter.herokuapp.com/twitterAccess'
 });
 
 var twitterKeys = {
@@ -22,7 +22,7 @@ var twitterKeys = {
 var twitterMessage;
 
 exports.updateMessage = function(req, res) {
-  twitterMessage = "There are " + req.body.count +" photos in my Instagram feed using a filter, WhatTheFilter?! https://guarded-reaches-5919.herokuapp.com/";
+  twitterMessage = "There are " + req.body.count +" photos in my Instagram feed using a filter, WhatTheFilter?! https://whatthefilter.herokuapp.com/";
   console.log(req.body.count);
   res.send('cool');
 };
@@ -79,7 +79,7 @@ exports.postStatus = function() {
 //IG configuration =================
 app.use(express.static(__dirname + '/public'));
 
-var redirect_uri = 'https://guarded-reaches-5919.herokuapp.com/handleauth';
+var redirect_uri = 'https://whatthefilter.herokuapp.com/handleauth';
 
 exports.authorizeUser = function(req, res) {
   ig.use({

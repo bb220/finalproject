@@ -77,7 +77,7 @@ var Twitter = React.createClass({
 var Facebook = React.createClass({
   logInFb: function() {
     FB.login(function(){
-      postAPI("There are " + filteredCount + " photos in my Instagram feed using a filter, WhatTheFilter?! https://guarded-reaches-5919.herokuapp.com/");
+      postAPI("There are " + filteredCount + " photos in my Instagram feed using a filter, WhatTheFilter?! https://whatthefilter.herokuapp.com/");
     },{scope: 'publish_actions'});
   },
   render: function() {
