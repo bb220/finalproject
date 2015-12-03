@@ -70,18 +70,7 @@ var Twitter = React.createClass({
     );
   },
   startTweet: function() {
-    window.open("/authorize_twitter", "", "width=600, height=200");
-    var data = JSON.stringify({count: filteredCount});
-    $.ajax({
-      type: "POST",
-      url: '/updateMessage',
-      contentType: 'application/json',
-      dataType: 'json',
-      data: data,
-      success: function() {
-        $('.message-text').css({"visibility":"visible", "color": "#58AEE8"});
-      }
-    });
+    tweetProcess();
   }
 });
 
