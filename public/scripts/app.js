@@ -177,8 +177,15 @@ var PhotoFeed = React.createClass({
   },
 
   loadMore: function() {
-    this.loadPhotosFromServer();
+    if (!alreadyPassed){
+      this.loadPhotosFromServer();
+    }
+    
   },
+
+  markPass: function() {
+    var alreadyPassed = true;
+  }
 
   render: function() {
     var responseLength = this.state.response.length;
@@ -188,7 +195,7 @@ var PhotoFeed = React.createClass({
         rows.push(
           <div className="photo">
             <Photo count={i} imagesrc={this.state.response[i].images.standard_resolution.url} filter={this.state.response[i].filter} />
-            <Waypoint onEnter={this.loadMore} />
+            <Waypoint onEnter={this.loadMore} onLeave={this.markPass} />
           </div>
           );
       }
