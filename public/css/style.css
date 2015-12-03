@@ -71,6 +71,7 @@
 
 .message-text {
 	visibility: hidden;
+	color: green;
 }
 .photoFeed {
 	margin-top: 80px;

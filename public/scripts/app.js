@@ -110,7 +110,7 @@ var Message = React.createClass({
       <div className="row">
         <div className="col-xs-2"></div>
         <div className="col-xs-8">
-          <h4 className="text-center message-text">success</h4>
+          <h4 className="text-center message-text">Message Posted</h4>
         </div>
         <div className="col-xs-2"></div>
       </div>
