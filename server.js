@@ -22,7 +22,7 @@ var twitterKeys = {
 var twitterMessage;
 
 exports.updateMessage = function(req, res) {
-  twitterMessage = "There are " + req.body.count +" photos in my Instagram feed using a filter! WhatTheFilter?!";
+  twitterMessage = "There are " + req.body.count +" photos in my Instagram feed using a filter, WhatTheFilter?! https://guarded-reaches-5919.herokuapp.com/";
   console.log(req.body.count);
   res.send('cool');
 };
