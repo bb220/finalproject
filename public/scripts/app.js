@@ -185,7 +185,7 @@ var PhotoFeed = React.createClass({
 
   markPass: function() {
     var alreadyPassed = true;
-  }
+  },
 
   render: function() {
     var responseLength = this.state.response.length;
