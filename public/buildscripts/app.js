@@ -43,7 +43,7 @@ var LogIn = React.createClass({
       ),
       React.createElement(
         "div",
-        { className: "row logIn" },
+        { className: "row logInBtn" },
         React.createElement("div", { className: "col-xs-3 col-md-5" }),
         React.createElement(
           "div",
