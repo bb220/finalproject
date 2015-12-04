@@ -407,7 +407,6 @@ var Router = Backbone.Router.extend({
   },
 
   streamScreen: function streamScreen() {
-    console.log('streamScreen!');
     new overallStream().render();
   },
 
