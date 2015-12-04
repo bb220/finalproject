@@ -283,7 +283,6 @@ var Router = Backbone.Router.extend({
   },
 
   streamScreen: function() {
-    console.log('streamScreen!');
     new overallStream().render();
   },
 

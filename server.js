@@ -23,7 +23,6 @@ var twitterMessage;
 
 exports.updateMessage = function(req, res) {
   twitterMessage = "There are " + req.body.count +" photos in my Instagram feed using a filter, WhatTheFilter?! https://whatthefilter.herokuapp.com/";
-  console.log(req.body.count);
   res.send('cool');
 };
 
@@ -34,9 +33,7 @@ exports.authorizeTwitter = function(req, res) {
       console.log("Error getting OAuth request token: ", error);
     } else {
       twitterKeys.token = requestToken;
-      console.log(twitterKeys.token);
       twitterKeys.secret = requestTokenSecret;
-      console.log(twitterKeys.secret);
       res.redirect(twitter.getAuthUrl(requestToken));
     }
   });
@@ -48,11 +45,8 @@ exports.twitterAccess = function(req, res) {
     if (error) {
       console.log(error);
     } else {
-      console.log("Access: ");
       twitterKeys.accessToken = accessToken;
-      console.log(twitterKeys.accessToken);
       twitterKeys.accessTokenSecret = accessTokenSecret;
-      console.log(twitterKeys.accessTokenSecret);
     }
     resetStreamCount();
     res.on("finish", exports.postStatus);
@@ -70,7 +64,7 @@ exports.postStatus = function() {
     if (error) {
       console.log(error);
     } else {
-      console.log(response);
+      
       }
     }
   );
@@ -97,7 +91,6 @@ exports.handleAuth  = function(req, res) {
       res.send("Didn't work");
     } else {
       user_id = result.user.id;
-      //console.log("Success: Access token is" + result.access_token);
       ig.use({
         client_id: '874eb5d83dfb4035a71c97faa154e0a9',
         client_secret: '24a50386213c4d0bba6187a9669707ca',
@@ -125,7 +118,7 @@ exports.loadPhotoFeed = function(req, res) {
     if(err) {
       console.log(err.body);
     } else {
-      console.log("Successfully retrieved page " + requestCount);
+      //console.log("Successfully retrieved page " + requestCount);
       options.max_id = pagination.next_max_id;
       res.send(medias);
       requestCount += 1;
