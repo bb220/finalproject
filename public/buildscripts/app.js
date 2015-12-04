@@ -303,14 +303,14 @@ var PhotoFeed = React.createClass({
         rows.push(React.createElement(
           "div",
           { className: "photo" },
-          React.createElement(Photo, { count: i, imagesrc: this.state.response[i].images.standard_resolution.url, filter: this.state.response[i].filter }),
+          React.createElement(Photo, { key: i, imagesrc: this.state.response[i].images.standard_resolution.url, filter: this.state.response[i].filter }),
           React.createElement(Waypoint, { onEnter: this.loadMore, passed: "false" })
         ));
       } else {
         rows.push(React.createElement(
           "div",
           { className: "photo" },
-          React.createElement(Photo, { count: i, imagesrc: this.state.response[i].images.standard_resolution.url, filter: this.state.response[i].filter })
+          React.createElement(Photo, { key: i, imagesrc: this.state.response[i].images.standard_resolution.url, filter: this.state.response[i].filter })
         ));
       }
       if (this.state.response[i].filter !== "Normal") {
